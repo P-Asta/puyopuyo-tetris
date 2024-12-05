@@ -18,7 +18,7 @@ impl Block for I {
     }
 
     fn rotate(&mut self, n: u8) {
-        self.rotate_index.add(n as i8);
+        self.rotate_index.add(n);
     }
 
     fn move_left(&mut self) {
