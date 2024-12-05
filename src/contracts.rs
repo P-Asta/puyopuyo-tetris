@@ -3,9 +3,10 @@ use crate::GameField;
 
 pub trait Block {
     const ID: u8;
-    // const WALL_KICK: ;
     fn new(x: i32, y: i32) -> Self;
-    fn rotate(&mut self, n: u8);
+    fn rotate_clockwise(&mut self);
+    fn rotate_counter_clockwise(&mut self);
+    fn rotate_180(&mut self);
     fn move_left(&mut self);
     fn move_right(&mut self);
     fn move_down(&mut self);

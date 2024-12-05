@@ -17,8 +17,30 @@ impl Block for I {
         }
     }
 
-    fn rotate(&mut self, n: u8) {
-        self.rotate_index.add(n);
+    fn rotate_clockwise(&mut self) {
+        let kick_tests = [(0, 0), (-2, 0), (2, 0), (-1, 1), (2, -1)];
+
+        self.rotate_index.add(1);
+    }
+    fn rotate_counter_clockwise(&mut self) {
+        let kick_tests = [(0, 0), (-2, 0), (2, 0), (-1, 1), (2, -1)];
+        self.rotate_index.sub(1);
+    }
+    fn rotate_180(&mut self) {
+        let kick_tests = [
+            (0, 0),
+            (0, -1),
+            (0, 1),
+            (-1, 0),
+            (1, 0),
+            (-2, 0),
+            (2, 0),
+            (-1, -1),
+            (1, -1),
+            (-1, 1),
+            (1, 1),
+        ];
+        self.rotate_index.add(2);
     }
 
     fn move_left(&mut self) {
@@ -34,6 +56,22 @@ impl Block for I {
     }
 
     fn test_collision(&self, dx: i32, dy: i32, field: &GameField) -> bool {
+        let shapes = self.get_shapes();
+        let (x, y) = self.position;
+        for i in 0..4 {
+            for j in 0..4 {
+                if shapes[self.rotate_index as usize][i][j] == 1 {
+                    let x = x + j as i32 + dx;
+                    let y = y + i as i32 + dy;
+                    if x < 0 || x >= field.size.0 as i32 || y >= field.size.1 as i32 {
+                        return true;
+                    }
+                    if y >= 0 && field.blocks.contains(&(x as u8, y as u8)) {
+                        return true;
+                    }
+                }
+            }
+        }
         false
     }
 
