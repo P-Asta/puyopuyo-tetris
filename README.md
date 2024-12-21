@@ -1,2 +1,2 @@
-# Game of Life
-간단한 2개의 규칙으로 돌아가는 게임입니다 :D
+# puyopuyo-tetris
+뿌태를 모던 테트처럼 만들기 위한 프로젝트 
