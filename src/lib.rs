@@ -1,20 +1,16 @@
-mod contracts;
-mod tetris;
-mod utils;
+pub mod contracts;
+pub mod tetris;
+pub mod utils;
 
-use wasm_bindgen::prelude::*;
-#[wasm_bindgen]
 extern "C" {
     fn alert(s: &str);
 }
 
-#[wasm_bindgen]
 pub struct GameField {
     blocks: Vec<(u8, u8)>,
     size: (usize, usize),
 }
 
-#[wasm_bindgen]
 impl GameField {
     pub fn new() -> Self {
         Self {

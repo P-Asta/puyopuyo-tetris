@@ -1,1 +1,0 @@
-import init, { LifeOfGame } from './pkg/wasm_pack_pra.js'
