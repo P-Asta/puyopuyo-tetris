@@ -5,5 +5,5 @@ fn main() {
     App::new().add_systems(Startup, startup).run();
 }
 fn startup() {
-    println!("Hello, Bevy!");
+    println!("Hello, tetris!");
 }
